@@ -5,7 +5,7 @@
 const SITE_DATA = {
 
   // ─── NAVIGATION & BRANDING ─────────────────────────────
-  brand: "ENGINEER_CORE",
+  brand: "Web Portfolio",
   navLinks: ["Experience", "Expertise", "Projects", "Education"],
 
   // ─── HERO SECTION ──────────────────────────────────────
