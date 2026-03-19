@@ -53,7 +53,7 @@ const SITE_DATA = {
       ],
     },
     {
-      date: "July 2024 — Present",
+      date: "November 2023 — May 2024",
       company: "D.W. Morgan",
       companyRole: "iOS Engineer (Intern)",
       bullets: [
