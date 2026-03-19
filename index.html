@@ -5,1028 +5,182 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oscar Allen Brioso — iOS Developer</title>
   <meta name="description" content="Multi-Platform Engineer specializing in high-performance iOS, Android, and Front-End ecosystems." />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-
   <style>
-    /* ===== RESET & VARIABLES ===== */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #111118;
-      --bg-card: #16161e;
-      --bg-card-hover: #1c1c26;
-      --bg-tag: #1e1e2a;
-      --border: #222233;
-      --border-light: #2a2a3a;
-      --text-primary: #f0f0f5;
-      --text-secondary: #9999aa;
-      --text-muted: #666677;
-      --accent: #6366f1;
-      --accent-light: #818cf8;
-      --accent-dim: rgba(99, 102, 241, 0.15);
-      --accent-glow: rgba(99, 102, 241, 0.3);
-      --font-body: 'DM Sans', -apple-system, sans-serif;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-      --max-width: 1120px;
-      --radius: 12px;
-      --radius-sm: 8px;
-      --radius-xs: 6px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    ul { list-style: none; }
-
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* ===== LABEL STYLE ===== */
-    .label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    /* ===== NAVIGATION ===== */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav__inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav__logo {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--text-primary);
-    }
-    .nav__links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .nav__link {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: color 0.25s;
-    }
-    .nav__link:hover { color: var(--text-primary); }
-    .nav__resume {
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 20px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: var(--radius-xs);
-      transition: background 0.25s, transform 0.2s;
-    }
-    .nav__resume:hover { background: var(--accent-light); transform: translateY(-1px); }
-
-    /* Mobile nav toggle */
-    .nav__toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .nav__toggle span {
-      width: 22px; height: 2px;
-      background: var(--text-primary);
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      padding: 140px 0 80px;
-    }
-    .hero__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .hero__badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border: 1px solid var(--accent);
-      border-radius: 20px;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      background: var(--accent-dim);
-      margin-bottom: 24px;
-    }
-    .hero__name {
-      font-family: var(--font-display);
-      font-size: clamp(48px, 7vw, 80px);
-      font-weight: 400;
-      line-height: 1.05;
-      color: var(--text-primary);
-      margin-bottom: 24px;
-    }
-    .hero__name span { color: var(--accent-light); }
-    .hero__desc {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 380px;
-      line-height: 1.7;
-      margin-bottom: 32px;
-    }
-    .hero__actions {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: var(--radius-sm);
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
-      font-family: var(--font-body);
-    }
-    .btn--primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn--primary:hover { background: var(--accent-light); transform: translateY(-2px); }
-    .btn--secondary {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
-    .btn--secondary:hover { background: var(--bg-card-hover); border-color: var(--border-light); transform: translateY(-2px); }
-    .hero__meta {
-      display: flex;
-      gap: 24px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .hero__meta-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .hero__meta-item svg { flex-shrink: 0; }
-
-    /* Hero visual card */
-    .hero__visual {
-      position: relative;
-    }
-    .hero__image-card {
-      width: 100%;
-      aspect-ratio: 16/10;
-      border-radius: var(--radius);
-      overflow: hidden;
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-    }
-    .hero__image-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero__image-overlay {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 16px 20px;
-      background: linear-gradient(transparent, rgba(10,10,15,0.95));
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-    }
-    .hero__image-label .label { color: var(--accent-light); margin-bottom: 4px; }
-    .hero__image-title { font-size: 14px; font-weight: 500; }
-    .hero__image-icon {
-      width: 32px; height: 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xs);
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    /* Abstract visual (CSS-only) */
-    .abstract-visual {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      background: radial-gradient(ellipse at 50% 50%, #1a1a2e 0%, var(--bg-primary) 100%);
-      overflow: hidden;
-    }
-    .abstract-visual::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 300px; height: 300px;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent, rgba(99,102,241,0.08), transparent, rgba(99,102,241,0.04), transparent);
-      animation: spin 20s linear infinite;
-    }
-    .abstract-ring {
-      position: absolute;
-      top: 50%; left: 50%;
-      border-radius: 50%;
-      border: 1px solid rgba(99,102,241,0.1);
-      transform: translate(-50%, -50%);
-    }
-    .abstract-ring:nth-child(1) { width: 80px; height: 80px; }
-    .abstract-ring:nth-child(2) { width: 140px; height: 140px; border-color: rgba(99,102,241,0.08); }
-    .abstract-ring:nth-child(3) { width: 200px; height: 200px; border-color: rgba(99,102,241,0.06); }
-    .abstract-ring:nth-child(4) { width: 260px; height: 260px; border-color: rgba(99,102,241,0.04); }
-    .abstract-ring:nth-child(5) { width: 320px; height: 320px; border-color: rgba(99,102,241,0.03); }
-    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-
-    /* ===== SECTIONS ===== */
-    section { padding: 80px 0; }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4.5vw, 44px);
-      font-weight: 400;
-      margin-bottom: 48px;
-    }
-
-    /* ===== PROFESSIONAL HISTORY / TIMELINE ===== */
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0; bottom: 0;
-      width: 2px;
-      background: var(--border);
-      transform: translateX(-50%);
-    }
-    .timeline__item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 60px;
-      position: relative;
-    }
-    .timeline__dot {
-      position: absolute;
-      left: 50%;
-      top: 20px;
-      width: 12px; height: 12px;
-      background: var(--accent);
-      border: 3px solid var(--bg-primary);
-      border-radius: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
-    .timeline__date {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      padding-top: 20px;
-    }
-    .timeline__item:nth-child(odd) .timeline__date { text-align: right; }
-    .timeline__card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .timeline__card:hover { border-color: var(--border-light); transform: translateY(-2px); }
-    .timeline__role {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .timeline__role-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      margin-bottom: 16px;
-      display: block;
-    }
-    .timeline__company {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .timeline__company-role {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-    }
-    .timeline__bullets { display: flex; flex-direction: column; gap: 10px; }
-    .timeline__bullet {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    .timeline__bullet::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 7px;
-    }
-    .timeline__desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* ===== EXPERTISE ===== */
-    .expertise {
-      border-top: 1px solid var(--border);
-    }
-    .expertise__inner {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 60px;
-    }
-    .expertise__desc {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-top: 16px;
-    }
-    .expertise__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-    .expertise__category-title {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-    .expertise__category-num {
-      color: var(--accent-light);
-      margin-right: 8px;
-    }
-    .expertise__tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .tag {
-      padding: 8px 16px;
-      background: var(--bg-tag);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xs);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      transition: all 0.25s;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .tag:hover { border-color: var(--accent); color: var(--text-primary); background: var(--accent-dim); }
-
-    /* ===== EDUCATION ===== */
-    .education {
-      background: var(--bg-secondary);
-      border-radius: var(--radius);
-      padding: 48px;
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      border: 1px solid var(--border);
-    }
-    .education__section-title {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-    .education__item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-    .education__icon {
-      width: 40px; height: 40px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xs);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .education__icon svg { width: 18px; height: 18px; color: var(--accent-light); }
-    .education__name {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .education__detail {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .education__quote {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-top: 6px;
-    }
-    .education__cert-type {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    /* ===== PROJECTS ===== */
-    .projects {
-      border-top: 1px solid var(--border);
-    }
-    .projects__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .project-card:hover { border-color: var(--border-light); transform: translateY(-4px); }
-    .project-card__image {
-      width: 100%;
-      aspect-ratio: 16/10;
-      overflow: hidden;
-      position: relative;
-      background: var(--bg-secondary);
-    }
-    .project-card__image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    .project-card:hover .project-card__image img { transform: scale(1.03); }
-
-    /* Placeholder project visuals */
-    .project-visual {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-visual--orbit {
-      background: linear-gradient(135deg, #0f1923 0%, #0a0f15 100%);
-    }
-    .project-visual--orbit::before {
-      content: '';
-      width: 120px; height: 120px;
-      border: 2px solid rgba(99,102,241,0.2);
-      border-radius: 50%;
-      position: absolute;
-    }
-    .project-visual--orbit::after {
-      content: '';
-      width: 60px; height: 60px;
-      border: 2px solid rgba(99,102,241,0.3);
-      border-radius: 50%;
-      position: absolute;
-    }
-    .project-visual--pan {
-      background: linear-gradient(135deg, #131318 0%, #1a1a22 50%, #0f0f15 100%);
-    }
-    .project-visual--pan::before {
-      content: '';
-      width: 80%; height: 60%;
-      background: repeating-linear-gradient(
-        90deg,
-        rgba(255,255,255,0.03) 0px,
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px,
-        transparent 40px
-      );
-      position: absolute;
-    }
-
-    .project-card__body {
-      padding: 24px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-    .project-card__title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .project-card__desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-    .project-card__tags {
-      display: flex;
-      gap: 8px;
-    }
-    .project-card__tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--accent-light);
-    }
-    .project-card__arrow {
-      width: 36px; height: 36px;
-      background: var(--bg-tag);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xs);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 4px;
-      transition: all 0.25s;
-    }
-    .project-card:hover .project-card__arrow { background: var(--accent-dim); border-color: var(--accent); }
-
-    /* ===== CTA ===== */
-    .cta {
-      text-align: center;
-      padding: 100px 0;
-    }
-    .cta__title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 36px;
-    }
-    .cta__title em {
-      font-style: italic;
-      color: var(--accent-light);
-    }
-    .cta__actions {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
-    .btn--outline {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: 0.5px;
-    }
-    .btn--outline:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-2px); }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0;
-    }
-    .footer__inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .footer__copy {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .footer__links {
-      display: flex;
-      gap: 24px;
-    }
-    .footer__link {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color 0.25s;
-    }
-    .footer__link:hover { color: var(--text-primary); }
-
-    /* ===== SCROLL ANIMATIONS ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .hero__inner {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .expertise__inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .timeline::before { left: 20px; }
-      .timeline__item {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding-left: 52px;
-      }
-      .timeline__dot { left: 20px; }
-      .timeline__item:nth-child(odd) .timeline__date { text-align: left; }
-      .timeline__date { padding-bottom: 12px; }
-      .projects__grid { grid-template-columns: 1fr; }
-      .education { grid-template-columns: 1fr; padding: 32px; }
-    }
-
-    @media (max-width: 640px) {
-      .nav__links { display: none; }
-      .nav__links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px; left: 0; right: 0;
-        background: rgba(10,10,15,0.97);
-        backdrop-filter: blur(20px);
-        padding: 20px 24px;
-        gap: 16px;
-        border-bottom: 1px solid var(--border);
-      }
-      .nav__toggle { display: flex; }
-      .hero { padding: 120px 0 60px; }
-      .hero__name { font-size: 42px; }
-      .hero__actions { flex-direction: column; }
-      .hero__meta { flex-direction: column; gap: 8px; }
-      .expertise__grid { grid-template-columns: 1fr; }
-      .footer__inner { flex-direction: column; gap: 16px; text-align: center; }
-      .cta__actions { flex-direction: column; align-items: center; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg-primary:#0a0a0f;--bg-secondary:#111118;--bg-card:#16161e;--bg-card-hover:#1c1c26;--bg-tag:#1e1e2a;--border:#222233;--border-light:#2a2a3a;--text-primary:#f0f0f5;--text-secondary:#9999aa;--text-muted:#666677;--accent:#6366f1;--accent-light:#818cf8;--accent-dim:rgba(99,102,241,0.15);--font-body:'DM Sans',-apple-system,sans-serif;--font-display:'DM Serif Display',Georgia,serif;--font-mono:'JetBrains Mono','SF Mono',monospace;--max-width:1120px;--radius:12px;--radius-sm:8px;--radius-xs:6px}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}img{display:block;max-width:100%}ul{list-style:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+    .label{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav__inner{max-width:var(--max-width);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav__logo{font-family:var(--font-mono);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--text-primary)}
+    .nav__links{display:flex;align-items:center;gap:32px}
+    .nav__link{font-size:13px;font-weight:500;color:var(--text-secondary);transition:color .25s}
+    .nav__link:hover{color:var(--text-primary)}
+    .nav__resume{font-size:13px;font-weight:600;padding:8px 20px;background:var(--accent);color:#fff;border-radius:var(--radius-xs);transition:background .25s,transform .2s}
+    .nav__resume:hover{background:var(--accent-light);transform:translateY(-1px)}
+    .nav__toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+    .nav__toggle span{width:22px;height:2px;background:var(--text-primary);border-radius:2px;transition:.3s}
+    .hero{padding:140px 0 80px}
+    .hero__inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .hero__badge{display:inline-block;padding:6px 14px;border:1px solid var(--accent);border-radius:20px;font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent-light);background:var(--accent-dim);margin-bottom:24px}
+    .hero__name{font-family:var(--font-display);font-size:clamp(48px,7vw,80px);font-weight:400;line-height:1.05;color:var(--text-primary);margin-bottom:24px}
+    .hero__name span{color:var(--accent-light)}
+    .hero__desc{font-size:16px;color:var(--text-secondary);max-width:380px;line-height:1.7;margin-bottom:32px}
+    .hero__actions{display:flex;gap:12px;margin-bottom:40px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:14px;font-weight:600;border-radius:var(--radius-sm);transition:all .25s;cursor:pointer;border:none;font-family:var(--font-body)}
+    .btn--primary{background:var(--accent);color:#fff}.btn--primary:hover{background:var(--accent-light);transform:translateY(-2px)}
+    .btn--secondary{background:var(--bg-card);color:var(--text-primary);border:1px solid var(--border)}.btn--secondary:hover{background:var(--bg-card-hover);border-color:var(--border-light);transform:translateY(-2px)}
+    .btn--outline{background:transparent;color:var(--text-primary);border:1px solid var(--border);font-family:var(--font-mono);font-size:13px;letter-spacing:.5px}.btn--outline:hover{border-color:var(--accent);color:var(--accent-light);transform:translateY(-2px)}
+    .hero__meta{display:flex;gap:24px;font-size:13px;color:var(--text-muted)}
+    .hero__meta-item{display:flex;align-items:center;gap:6px}
+    .hero__visual{position:relative}
+    .hero__image-card{width:100%;aspect-ratio:16/10;border-radius:var(--radius);overflow:hidden;position:relative;background:var(--bg-card);border:1px solid var(--border)}
+    .hero__image-overlay{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(transparent,rgba(10,10,15,0.95));display:flex;align-items:flex-end;justify-content:space-between}
+    .hero__image-label .label{color:var(--accent-light);margin-bottom:4px}
+    .hero__image-title{font-size:14px;font-weight:500}
+    .hero__image-icon{width:32px;height:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center}
+    .abstract-visual{width:100%;height:100%;position:relative;background:radial-gradient(ellipse at 50% 50%,#1a1a2e 0%,var(--bg-primary) 100%);overflow:hidden}
+    .abstract-visual::before{content:'';position:absolute;top:50%;left:50%;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.08),transparent,rgba(99,102,241,0.04),transparent);animation:spin 20s linear infinite}
+    .abstract-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(99,102,241,0.1);transform:translate(-50%,-50%)}
+    .abstract-ring:nth-child(1){width:80px;height:80px}.abstract-ring:nth-child(2){width:140px;height:140px;border-color:rgba(99,102,241,0.08)}.abstract-ring:nth-child(3){width:200px;height:200px;border-color:rgba(99,102,241,0.06)}.abstract-ring:nth-child(4){width:260px;height:260px;border-color:rgba(99,102,241,0.04)}.abstract-ring:nth-child(5){width:320px;height:320px;border-color:rgba(99,102,241,0.03)}
+    @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    section{padding:80px 0}
+    .section-title{font-family:var(--font-display);font-size:clamp(32px,4.5vw,44px);font-weight:400;margin-bottom:48px}
+    .timeline{position:relative;max-width:900px;margin:0 auto}
+    .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--border);transform:translateX(-50%)}
+    .timeline__item{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px;position:relative}
+    .timeline__dot{position:absolute;left:50%;top:20px;width:12px;height:12px;background:var(--accent);border:3px solid var(--bg-primary);border-radius:50%;transform:translateX(-50%);z-index:2}
+    .timeline__date{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding-top:20px}
+    .timeline__item:nth-child(odd) .timeline__date{text-align:right}
+    .timeline__card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:border-color .3s,transform .3s}
+    .timeline__card:hover{border-color:var(--border-light);transform:translateY(-2px)}
+    .timeline__role{font-size:18px;font-weight:700;margin-bottom:2px}
+    .timeline__role-label{font-family:var(--font-mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent-light);margin-bottom:16px;display:block}
+    .timeline__company{font-size:15px;font-weight:600;margin-bottom:4px}
+    .timeline__company-role{font-size:13px;color:var(--text-secondary);margin-bottom:12px}
+    .timeline__bullets{display:flex;flex-direction:column;gap:10px}
+    .timeline__bullet{font-size:13px;color:var(--text-secondary);line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+    .timeline__bullet::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;flex-shrink:0;margin-top:7px}
+    .timeline__desc{font-size:13px;color:var(--text-secondary);line-height:1.6}
+    .expertise{border-top:1px solid var(--border)}
+    .expertise__inner{display:grid;grid-template-columns:1fr 2fr;gap:60px}
+    .expertise__desc{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-top:16px}
+    .expertise__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+    .expertise__category-title{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
+    .expertise__category-num{color:var(--accent-light);margin-right:8px}
+    .expertise__tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{padding:8px 16px;background:var(--bg-tag);border:1px solid var(--border);border-radius:var(--radius-xs);font-size:12px;font-weight:600;color:var(--text-secondary);transition:all .25s;text-transform:uppercase;letter-spacing:.5px}
+    .tag:hover{border-color:var(--accent);color:var(--text-primary);background:var(--accent-dim)}
+    .education{background:var(--bg-secondary);border-radius:var(--radius);padding:48px;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;border:1px solid var(--border)}
+    .education__section-title{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:24px}
+    .education__item{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+    .education__icon{width:40px;height:40px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .education__icon svg{width:18px;height:18px;color:var(--accent-light)}
+    .education__name{font-size:15px;font-weight:600;margin-bottom:2px}
+    .education__detail{font-size:13px;color:var(--text-secondary)}
+    .education__quote{font-size:12px;color:var(--text-muted);font-style:italic;margin-top:6px}
+    .education__cert-type{font-family:var(--font-mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:2px}
+    .projects{border-top:1px solid var(--border)}
+    .projects__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .3s,transform .3s;display:block}
+    .project-card:hover{border-color:var(--border-light);transform:translateY(-4px)}
+    .project-card__image{width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;background:var(--bg-secondary)}
+    .project-card__image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .project-card:hover .project-card__image img{transform:scale(1.03)}
+    .project-visual{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .project-visual--orbit{background:linear-gradient(135deg,#0f1923,#0a0f15)}
+    .project-visual--orbit::before{content:'';width:120px;height:120px;border:2px solid rgba(99,102,241,0.2);border-radius:50%;position:absolute}
+    .project-visual--orbit::after{content:'';width:60px;height:60px;border:2px solid rgba(99,102,241,0.3);border-radius:50%;position:absolute}
+    .project-visual--pan{background:linear-gradient(135deg,#131318,#1a1a22 50%,#0f0f15)}
+    .project-visual--pan::before{content:'';width:80%;height:60%;background:repeating-linear-gradient(90deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 40px);position:absolute}
+    .project-visual--grid{background:linear-gradient(135deg,#0f1518,#0a1015)}
+    .project-visual--grid::before{content:'';width:80%;height:80%;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 30px),repeating-linear-gradient(90deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 30px);position:absolute}
+    .project-card__body{padding:24px;display:flex;align-items:flex-start;justify-content:space-between}
+    .project-card__title{font-size:20px;font-weight:700;margin-bottom:8px}
+    .project-card__desc{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px}
+    .project-card__tags{display:flex;gap:8px}
+    .project-card__tag{font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--accent-light)}
+    .project-card__arrow{width:36px;height:36px;background:var(--bg-tag);border:1px solid var(--border);border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px;transition:all .25s}
+    .project-card:hover .project-card__arrow{background:var(--accent-dim);border-color:var(--accent)}
+    .cta{text-align:center;padding:100px 0}
+    .cta__title{font-family:var(--font-display);font-size:clamp(36px,5vw,56px);font-weight:400;line-height:1.2;margin-bottom:36px}
+    .cta__title em{font-style:italic;color:var(--accent-light)}
+    .cta__actions{display:flex;justify-content:center;gap:12px}
+    .footer{border-top:1px solid var(--border);padding:24px 0}
+    .footer__inner{display:flex;align-items:center;justify-content:space-between}
+    .footer__copy{font-family:var(--font-mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+    .footer__links{display:flex;gap:24px}
+    .footer__link{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);transition:color .25s}
+    .footer__link:hover{color:var(--text-primary)}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){
+      .hero__inner{grid-template-columns:1fr;gap:40px}
+      .expertise__inner{grid-template-columns:1fr;gap:32px}
+      .timeline::before{left:20px}
+      .timeline__item{grid-template-columns:1fr;gap:0;padding-left:52px}
+      .timeline__dot{left:20px}
+      .timeline__item:nth-child(odd) .timeline__date{text-align:left}
+      .timeline__date{padding-bottom:12px}
+      .projects__grid{grid-template-columns:1fr}
+      .education{grid-template-columns:1fr;padding:32px}
+    }
+    @media(max-width:640px){
+      .nav__links{display:none}
+      .nav__links.open{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,15,0.97);backdrop-filter:blur(20px);padding:20px 24px;gap:16px;border-bottom:1px solid var(--border)}
+      .nav__toggle{display:flex}
+      .hero{padding:120px 0 60px}.hero__name{font-size:42px}
+      .hero__actions{flex-direction:column}
+      .hero__meta{flex-direction:column;gap:8px}
+      .expertise__grid{grid-template-columns:1fr}
+      .footer__inner{flex-direction:column;gap:16px;text-align:center}
+      .cta__actions{flex-direction:column;align-items:center}
     }
   </style>
 </head>
 <body>
+  <nav class="nav"><div class="nav__inner" id="nav"></div></nav>
+  <section class="hero"><div class="container"><div class="hero__inner" id="hero"></div></div></section>
+  <section id="experience" style="padding-top:40px"><div class="container"><h2 class="section-title reveal">Professional History</h2><div class="timeline" id="timeline"></div></div></section>
+  <section id="expertise" class="expertise"><div class="container"><div class="expertise__inner reveal" id="expertiseSection"></div><div class="education reveal" id="educationSection"></div></div></section>
+  <section id="projects" class="projects"><div class="container"><h2 class="section-title reveal">Featured Projects</h2><div class="projects__grid" id="projectsGrid"></div></div></section>
+  <section id="contact" class="cta"><div class="container" id="ctaSection"></div></section>
+  <footer class="footer"><div class="container"><div class="footer__inner" id="footerSection"></div></div></footer>
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">ENGINEER_CORE</a>
-      <button class="nav__toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav__links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav__links">
-        <a href="#experience" class="nav__link">Experience</a>
-        <a href="#expertise" class="nav__link">Expertise</a>
-        <a href="#projects" class="nav__link">Projects</a>
-        <a href="#education" class="nav__link">Education</a>
-        <a href="#contact" class="nav__resume">Resume</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero__inner">
-        <div class="hero__content">
-          <div class="hero__badge">Available for New Challenges</div>
-          <h1 class="hero__name">Oscar Allen<br><span>Brioso.</span></h1>
-          <p class="hero__desc">Multi-Platform Engineer specializing in high-performance iOS, Android, and Front-End ecosystems. Building precision-milled digital experiences.</p>
-          <div class="hero__actions">
-            <a href="#projects" class="btn btn--primary">
-              Explore Projects
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
-            </a>
-            <a href="#contact" class="btn btn--secondary">Resume</a>
-          </div>
-          <div class="hero__meta">
-            <span class="hero__meta-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Makati City, PH
-            </span>
-            <span class="hero__meta-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
-              oscallen@gmail.com
-            </span>
-          </div>
-        </div>
-        <div class="hero__visual reveal">
-          <div class="hero__image-card">
-            <div class="abstract-visual">
-              <div class="abstract-ring"></div>
-              <div class="abstract-ring"></div>
-              <div class="abstract-ring"></div>
-              <div class="abstract-ring"></div>
-              <div class="abstract-ring"></div>
-            </div>
-            <div class="hero__image-overlay">
-              <div class="hero__image-label">
-                <span class="label" style="color: var(--accent-light);">Active Progress</span>
-                <div class="hero__image-title">Refining Mobile Architecture</div>
-              </div>
-              <div class="hero__image-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROFESSIONAL HISTORY -->
-  <section id="experience" style="padding-top: 40px;">
-    <div class="container">
-      <h2 class="section-title reveal">Professional History</h2>
-      <div class="timeline">
-
-        <!-- Current Role -->
-        <div class="timeline__item reveal">
-          <div class="timeline__date" style="padding-top:20px;">Jan 2025 — Present</div>
-          <div class="timeline__card">
-            <div class="timeline__role">iOS Developer</div>
-            <span class="timeline__role-label">Current Role</span>
-            <div class="timeline__bullets">
-              <div class="timeline__bullet">Develop and maintain iOS application by resolving bugs and enhancing UI/UX based on QA and business feedback.</div>
-              <div class="timeline__bullet">Reduced application crash frequency by 30% through proactive Crashlytics monitoring.</div>
-              <div class="timeline__bullet">Increased revenue by 15% via cross-platform marketing integrations and flow optimization.</div>
-              <div class="timeline__bullet">Manage end-to-end internal testing and App Store distribution pipelines.</div>
-            </div>
-          </div>
-          <div class="timeline__dot"></div>
-        </div>
-
-        <!-- Red Planet Hotels -->
-        <div class="timeline__item reveal">
-          <div class="timeline__date" style="text-align:right; padding-top:20px;">Nov 2023 — May 2024</div>
-          <div class="timeline__card">
-            <div class="timeline__company">Red Planet Hotels</div>
-            <div class="timeline__company-role">iOS Developer (Hybrid)</div>
-            <p class="timeline__desc">Rigorous debugging reducing app issues by 40% and efficiency gains through advanced multi-threading implementation.</p>
-          </div>
-          <div class="timeline__dot"></div>
-        </div>
-
-        <!-- D.W. Morgan -->
-        <div class="timeline__item reveal">
-          <div class="timeline__date" style="padding-top:20px;">July 2024 — Present</div>
-          <div class="timeline__card">
-            <div class="timeline__company">D.W. Morgan</div>
-            <div class="timeline__company-role">iOS Engineer (Intern)</div>
-            <p class="timeline__desc">Developed reusable Cocoapod libraries and improved workflow efficiency by 30% using Agile methodologies.</p>
-          </div>
-          <div class="timeline__dot"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERTISE -->
-  <section id="expertise" class="expertise">
-    <div class="container">
-      <div class="expertise__inner reveal">
-        <div>
-          <h2 class="section-title" style="margin-bottom:0;">Expertise.</h2>
-          <p class="expertise__desc">Precision engineering across the full stack, from core Swift development to robust DevOps pipelines.</p>
-        </div>
-        <div class="expertise__grid">
-          <div>
-            <div class="expertise__category-title"><span class="expertise__category-num">01</span>/ Languages &amp; Frameworks</div>
-            <div class="expertise__tags">
-              <span class="tag">Swift</span>
-              <span class="tag">SwiftUI</span>
-              <span class="tag">Objective-C</span>
-              <span class="tag">UIKit</span>
-              <span class="tag">Python</span>
-              <span class="tag">Core Data</span>
-              <span class="tag">XCTest</span>
-            </div>
-          </div>
-          <div>
-            <div class="expertise__category-title"><span class="expertise__category-num">02</span>/ Infrastructure &amp; DevOps</div>
-            <div class="expertise__tags">
-              <span class="tag">Firebase</span>
-              <span class="tag">Fastlane</span>
-              <span class="tag">App Store Connect</span>
-              <span class="tag">Git</span>
-              <span class="tag">Crashlytics</span>
-              <span class="tag">AWS</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Education Card -->
-      <div class="education reveal" id="education">
-        <div>
-          <div class="education__section-title">Academic Foundation</div>
-          <div class="education__item">
-            <div class="education__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 3 6 3s6-2 6-3v-5"/></svg>
-            </div>
-            <div>
-              <div class="education__name">University of the Philippines Los Baños</div>
-              <div class="education__detail">BS in Chemical Engineering</div>
-              <div class="education__quote">"Engineering rigor translated from chemical processes to digital architectures."</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="education__section-title">Certifications &amp; Training</div>
-          <div class="education__item">
-            <div class="education__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <div class="education__name">OWASP Cybersecurity</div>
-              <div class="education__cert-type">Professional Certification</div>
-            </div>
-          </div>
-          <div class="education__item">
-            <div class="education__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <div>
-              <div class="education__name">Agile Methodology</div>
-              <div class="education__cert-type">Workflow Training</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED PROJECTS -->
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2 class="section-title reveal">Featured Projects</h2>
-      <div class="projects__grid">
-
-        <a href="#" class="project-card reveal">
-          <div class="project-card__image">
-            <div class="project-visual project-visual--orbit"></div>
-          </div>
-          <div class="project-card__body">
-            <div>
-              <div class="project-card__title">OrbitWatch</div>
-              <p class="project-card__desc">Space education platform tracking the ISS with real-time NASA integration.</p>
-              <div class="project-card__tags">
-                <span class="project-card__tag">SwiftUI</span>
-                <span class="project-card__tag">Metal</span>
-              </div>
-            </div>
-            <div class="project-card__arrow">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="project-card reveal">
-          <div class="project-card__image">
-            <div class="project-visual project-visual--pan"></div>
-          </div>
-          <div class="project-card__body">
-            <div>
-              <div class="project-card__title">PanTracker</div>
-              <p class="project-card__desc">Intelligent inventory system featuring expiration alerts and categorization.</p>
-              <div class="project-card__tags">
-                <span class="project-card__tag">CoreData</span>
-                <span class="project-card__tag">UIKit</span>
-              </div>
-            </div>
-            <div class="project-card__arrow">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="contact" class="cta">
-    <div class="container">
-      <h2 class="cta__title reveal">Let's build something<br><em>exceptional.</em></h2>
-      <div class="cta__actions reveal">
-        <a href="mailto:oscallen@gmail.com" class="btn btn--primary">Get in Touch</a>
-        <a href="tel:09451435449" class="btn btn--outline">0945-143-5449</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div class="footer__copy">&copy; 2024 Engineering Elegance &bull; San Francisco, CA</div>
-        <div class="footer__links">
-          <a href="mailto:oscallen@gmail.com" class="footer__link">Email</a>
-          <a href="#" class="footer__link">LinkedIn</a>
-          <a href="#" class="footer__link">Resume</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scroll Reveal -->
+  <script src="data.js"></script>
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Close mobile nav on link click
-    document.querySelectorAll('.nav__link, .nav__resume').forEach(link => {
-      link.addEventListener('click', () => {
-        document.querySelector('.nav__links').classList.remove('open');
-      });
-    });
+    const D = SITE_DATA;
+    const I = {
+      arrow:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M7 7h10v10"/></svg>',
+      pin:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+      mail:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>',
+      monitor:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>',
+      graduation:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 3 6 3s6-2 6-3v-5"/></svg>',
+      shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>'
+    };
+    const h=D.hero;
+    document.getElementById('nav').innerHTML=`<a href="#" class="nav__logo">${D.brand}</a><button class="nav__toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav__links').classList.toggle('open')"><span></span><span></span><span></span></button><div class="nav__links">${D.navLinks.map(l=>`<a href="#${l.toLowerCase()}" class="nav__link">${l}</a>`).join('')}<a href="${D.resumeUrl}" class="nav__resume">Resume</a></div>`;
+    document.getElementById('hero').innerHTML=`<div class="hero__content"><div class="hero__badge">${h.badge}</div><h1 class="hero__name">${h.firstName}<br><span>${h.lastName}</span></h1><p class="hero__desc">${h.description}</p><div class="hero__actions"><a href="${h.primaryButton.link}" class="btn btn--primary">${h.primaryButton.text} ${I.arrow}</a><a href="${h.secondaryButton.link}" class="btn btn--secondary">${h.secondaryButton.text}</a></div><div class="hero__meta"><span class="hero__meta-item">${I.pin} ${h.location}</span><span class="hero__meta-item">${I.mail} ${h.email}</span></div></div><div class="hero__visual reveal"><div class="hero__image-card"><div class="abstract-visual"><div class="abstract-ring"></div><div class="abstract-ring"></div><div class="abstract-ring"></div><div class="abstract-ring"></div><div class="abstract-ring"></div></div><div class="hero__image-overlay"><div class="hero__image-label"><span class="label" style="color:var(--accent-light)">Active Progress</span><div class="hero__image-title">${h.activeProgress}</div></div><div class="hero__image-icon">${I.monitor}</div></div></div></div>`;
+    document.getElementById('timeline').innerHTML=D.experience.map(e=>{let c='';if(e.role){c=`<div class="timeline__role">${e.role}</div>${e.roleLabel?`<span class="timeline__role-label">${e.roleLabel}</span>`:''}${e.bullets?`<div class="timeline__bullets">${e.bullets.map(b=>`<div class="timeline__bullet">${b}</div>`).join('')}</div>`:''}`}else{c=`<div class="timeline__company">${e.company}</div><div class="timeline__company-role">${e.companyRole}</div><p class="timeline__desc">${e.description}</p>`}return`<div class="timeline__item reveal"><div class="timeline__date" style="padding-top:20px">${e.date}</div><div class="timeline__card">${c}</div><div class="timeline__dot"></div></div>`}).join('');
+    const ex=D.expertise;
+    document.getElementById('expertiseSection').innerHTML=`<div><h2 class="section-title" style="margin-bottom:0">${ex.headline}</h2><p class="expertise__desc">${ex.description}</p></div><div class="expertise__grid">${ex.categories.map(c=>`<div><div class="expertise__category-title"><span class="expertise__category-num">${c.number}</span>/ ${c.title}</div><div class="expertise__tags">${c.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`).join('')}</div>`;
+    const ed=D.education;
+    document.getElementById('educationSection').innerHTML=`<div><div class="education__section-title">Academic Foundation</div>${ed.academic.map(a=>`<div class="education__item"><div class="education__icon">${I[a.icon]||''}</div><div><div class="education__name">${a.name}</div><div class="education__detail">${a.detail}</div>${a.quote?`<div class="education__quote">${a.quote}</div>`:''}</div></div>`).join('')}</div><div><div class="education__section-title">Certifications &amp; Training</div>${ed.certifications.map(c=>`<div class="education__item"><div class="education__icon">${I[c.icon]||''}</div><div><div class="education__name">${c.name}</div><div class="education__cert-type">${c.detail}</div></div></div>`).join('')}</div>`;
+    document.getElementById('projectsGrid').innerHTML=D.projects.map(p=>{const v=p.image?`<img src="${p.image}" alt="${p.title}"/>`:`<div class="project-visual project-visual--${p.visualStyle||'grid'}"></div>`;return`<a href="${p.link}" class="project-card reveal"><div class="project-card__image">${v}</div><div class="project-card__body"><div><div class="project-card__title">${p.title}</div><p class="project-card__desc">${p.description}</p><div class="project-card__tags">${p.tags.map(t=>`<span class="project-card__tag">${t}</span>`).join('')}</div></div><div class="project-card__arrow">${I.arrow}</div></div></a>`}).join('');
+    const ct=D.cta;
+    document.getElementById('ctaSection').innerHTML=`<h2 class="cta__title reveal">${ct.title}<br><em>${ct.highlight}</em></h2><div class="cta__actions reveal"><a href="${ct.primaryButton.link}" class="btn btn--primary">${ct.primaryButton.text}</a><a href="${ct.secondaryButton.link}" class="btn btn--outline">${ct.secondaryButton.text}</a></div>`;
+    const ft=D.footer;
+    document.getElementById('footerSection').innerHTML=`<div class="footer__copy">${ft.copy}</div><div class="footer__links">${ft.links.map(l=>`<a href="${l.url}" class="footer__link">${l.text}</a>`).join('')}</div>`;
+    const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    document.querySelectorAll('.nav__link,.nav__resume').forEach(l=>{l.addEventListener('click',()=>document.querySelector('.nav__links').classList.remove('open'))});
   </script>
-
 </body>
 </html>
