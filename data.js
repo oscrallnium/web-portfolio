@@ -123,7 +123,7 @@ const SITE_DATA = {
       title: "PanTracker",
       description: "Intelligent inventory system featuring expiration alerts and categorization.",
       tags: ["CoreData", "UIKit"],
-      link: "#",
+      link: "pantracker.html",
       visualStyle: "pan",
       // image: "assets/pantracker.png",
     },
@@ -143,7 +143,7 @@ const SITE_DATA = {
     links: [
       { text: "Email", url: "mailto:oscallen@gmail.com" },
       { text: "LinkedIn", url: "#" },
-      { text: "📃 Resume", url: "https://drive.google.com/file/d/1UDRK8l-ERo02F2fKWVzdq8IU-oxzDMo1/view?usp=sharing" },
+      { text: "📄 Resume", url: "https://drive.google.com/file/d/1UDRK8l-ERo02F2fKWVzdq8IU-oxzDMo1/view?usp=sharing" },
     ],
   },
 };
