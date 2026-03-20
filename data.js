@@ -42,7 +42,7 @@ const SITE_DATA = {
       ],
     },
     {
-      date: "Nov 2023 — May 2024",
+      date: "Jul 2024 — Sept 2025",
       company: "Red Planet Hotels",
       companyRole: "iOS Developer (Hybrid)",
       bullets: [
@@ -53,7 +53,7 @@ const SITE_DATA = {
       ],
     },
     {
-      date: "November 2023 — May 2024",
+      date: "Nov 2023 — May 2024",
       company: "D.W. Morgan",
       companyRole: "iOS Engineer (Intern)",
       bullets: [
